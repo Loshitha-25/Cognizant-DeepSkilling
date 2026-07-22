@@ -1,0 +1,13 @@
+<p>student-profile works!</p>
+<h3>Enrolled Courses</h3>
+
+<p *ngIf="enrolledCourses.length === 0">
+  No courses enrolled.
+</p>
+
+<ul *ngIf="enrolledCourses.length > 0">
+  <li *ngFor="let course of enrolledCourses">
+    {{ course.name }} - {{ course.code }}
+  </li>
+</ul>
+<app-notification></app-notification>
