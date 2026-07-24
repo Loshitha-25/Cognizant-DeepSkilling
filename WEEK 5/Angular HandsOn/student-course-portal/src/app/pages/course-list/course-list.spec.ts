@@ -1,4 +1,8 @@
+import { provideMockStore } from '@ngrx/store/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { CourseList } from './course-list';
 
@@ -8,9 +12,20 @@ describe('CourseList', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CourseList]
-    })
-    .compileComponents();
+      imports: [CourseList],
+      providers: [
+  provideRouter([]),
+  provideHttpClient(),
+  provideHttpClientTesting(),
+  provideMockStore({
+    initialState: {
+      enrollment: {
+        enrolledCourseIds: []
+      }
+    }
+  })
+]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CourseList);
     component = fixture.componentInstance;
